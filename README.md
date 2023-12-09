@@ -1,54 +1,46 @@
+video: https://youtu.be/nTzC6gxNGZU
 # Azure-Flask-App
-This readme will walk you through creating an auto scaling app using GitHub, Docker, and Microsoft App Services 
 
-## Step One Environment Set Up
-Set up your environment using GitHub Code Spaces and VScode.
+This README will guide you through the process of creating an auto-scaling application using GitHub, Docker, and Microsoft App Services.
 
-![Alt text](images/image-6.png)
+## Step One: Environment Set Up
+Begin by setting up your environment using GitHub Code Spaces and VS Code.
 
-## Step Two Flask App
-Build a basic flask app (critical to have host and port number). Feel free to start with mine but there are also plenty of more sophisticated ones online, the most important thing to me was getting the plumbing sorted.
 
-## Step Three Build Docker File 
-Use mine as a template but there are a couple of gotchas. Be sure to expose the port 5000 
+## Step Two: Flask App
+Build a basic Flask application. Ensure to include the host and port number in your configuration. You can start with my example or find more sophisticated ones online. The primary goal is to establish the underlying infrastructure.
+
+## Step Three: Build Docker File
+Use the provided template for your Docker file. Remember to expose port 5000.
+Commands to use:
+  - `docker build app-name .`
+  - `docker run -p 5000:5000 app-name`
+
+## Step Four: Login to DockerHub via Codespaces
+Enter `docker login --username=XXXX` in the terminal. Build your container and push it to DockerHub (create your DockerHub repository first).
 Commands:
-  - docker build app-name .
-  - docker run -p  5000:5000 app-name
+  - `docker login --username=`
+  - `docker build -t username/repo .`
+  - `docker push username/repo`
 
-## Step Four Login to DockerHub via Codespaces
-docker login --username=XXXX in the terminal, build your container and push it to DockerHub (you will have to make your repo on DockerHub first)
-Commands:
-  - docker login --username=
-  - docker build -t username/repo .
-  - docker push username/repo
-
-Create the repo with the title you need prior to pushing
-![Alt text](images/image-3.png)
-
-## Step Five 
-Set up via Azure App Services, it's key in the configuration setting to add "WEBSITES_PORT" with a value of 5000 (more below)
-
-### Step Five a) 
-Log into Azure, search app services and select create (web app)
-
-![Alt text](images/image.png)
-
-### Step Five b) 
-When creating the app be sure to select Docker Container (BTW their are some gotchas with the naming so read the instructions)
-
-![Alt text](images/image-1.png)
-
-### Step Five c) 
-When selecting the Docker container be sure to point to the correct image tab.
-
-![Alt text](images/image-2.png)
+Ensure you create the repository with the necessary title before pushing.
 
 
-### Step Five d) 
-After deployment you'll need to go configuration and add "WEBSITES_PORT" with a value of 5000 (more below). This will allow your app to run on at the public URL provided by Azure
+## Step Five: Setup via Azure App Services
+In Azure App Services configuration settings, add "WEBSITES_PORT" with a value of 5000.
 
-Website Port 
-![Alt text](images/image-4.png)
+### Step Five a)
+Log into Azure, search for app services, and choose to create a web app.
 
-Public URL
-![Alt text](images/image-5.png)
+
+### Step Five b)
+While creating the app, select the Docker Container option. Be aware of naming conventions.
+
+
+### Step Five c)
+Select the correct image tab when choosing your Docker container.
+
+
+### Step Five d)
+Post-deployment, go to configuration settings and add "WEBSITES_PORT" with a value of 5000. This enables your app to run at the public URL provided by Azure.
+
